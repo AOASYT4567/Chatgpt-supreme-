@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Supreme</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h1>Chat Supreme</h1>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-button">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="settings-btn" class="icon-button">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Modelos de IA</h2>
+                    <button id="new-chat-btn" class="primary-button">
+                        <i class="fas fa-plus"></i> Novo Chat
+                    </button>
+                </div>
+                
+                <div class="ai-models">
+                    <div class="model-card active" data-model="general">
+                        <div class="model-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="model-info">
+                            <h3>Assistente Geral</h3>
+                            <p>Respostas gerais e conversação</p>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card" data-model="translator">
+                        <div class="model-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="model-info">
+                            <h3>Tradutor</h3>
+                            <p>Tradução entre idiomas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card" data-model="summarizer">
+                        <div class="model-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="model-info">
+                            <h3>Resumidor</h3>
+                            <p>Resumo de textos longos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card" data-model="sentiment">
+                        <div class="model-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <div class="model-info">
+                            <h3>Análise de Sentimento</h3>
+                            <p>Análise emocional de textos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card" data-model="coder">
+                        <div class="model-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="model-info">
+                            <h3>Programador</h3>
+                            <p>Ajuda com código e programação</p>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card" data-model="creative">
+                        <div class="model-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="model-info">
+                            <h3>Criativo</h3>
+                            <p>Geração de conteúdo criativo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-history">
+                    <h3>Histórico de Conversas</h3>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <i class="fas fa-comment"></i>
+                            <span>Conversa sobre IA</span>
+                        </div>
+                        <div class="history-item">
+                            <i class="fas fa-comment"></i>
+                            <span>Ajuda com código Python</span>
+                        </div>
+                        <div class="history-item">
+                            <i class="fas fa-comment"></i>
+                            <span>Tradução de documento</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="chat-container">
+                <div class="chat-header">
+                    <div class="active-model-info">
+                        <div class="model-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h2>Assistente Geral</h2>
+                            <p>Modelo de IA para respostas gerais e conversação</p>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="icon-button" title="Limpar conversa">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button class="icon-button" title="Exportar conversa">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Olá! Sou o Chat Supreme. Como posso ajudar você hoje? Você pode escolher diferentes modelos de IA na barra lateral para tarefas específicas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="input-tools">
+                        <button class="icon-button" title="Anexar arquivo">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="icon-button" title="Gravar áudio">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="user-input" 
+                            placeholder="Digite sua mensagem aqui..." 
+                            rows="1"
+                        ></textarea>
+                        <button id="send-btn" class="send-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de Configurações -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configurações</h2>
+                <button class="close-button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3>Preferências</h3>
+                    <div class="setting-item">
+                        <label for="language">Idioma</label>
+                        <select id="language">
+                            <option value="pt-BR" selected>Português (Brasil)</option>
+                            <option value="en">Inglês</option>
+                            <option value="es">Espanhol</option>
+                            <option value="fr">Francês</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="response-length">Comprimento da Resposta</label>
+                        <select id="response-length">
+                            <option value="short">Curto</option>
+                            <option value="medium" selected>Médio</option>
+                            <option value="long">Longo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Aparência</h3>
+                    <div class="setting-item">
+                        <label for="font-size">Tamanho da Fonte</label>
+                        <input type="range" id="font-size" min="12" max="20" value="16">
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Dados</h3>
+                    <div class="setting-item">
+                        <button id="clear-history" class="secondary-button">Limpar Histórico</button>
+                        <button id="export-data" class="secondary-button">Exportar Dados</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-settings" class="primary-button">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
